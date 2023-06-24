@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" 
+rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+
+<title>Cadasto de Usuario</title>
+</head>
+<body>
+<form method="POST" action="/home">
+    <div th:if="${aluno}">
+        <input type="hidden" name="id" th:value="${aluno?.id}">
+    </div>
+    <div class="form-group" >
+      <label for="formGroupExampleInput">Nome</label>
+      <input type="text" class="form-control" id="formGroupExampleInput" name="nome" th:value="${aluno?.nome}">
+    </div>
+    <div class="form-group">
+      <label for="formGroupExampleInput2">Usuario</label>
+      <input type="text" class="form-control" id="formGroupExampleInput2" name="usuario" th:value="${aluno?.usuario}">
+    </div> 
+    <div class="form-group">
+      <label for="formGroupExampleInput">Papéis</label>
+    </div>
+    <th:block th:each="pp :${papeis}">
+      <input class="form-check-input" type="checkbox" name="pps" th:value="${pp.id}">
+      <label class="form-check-label" th:text="${pp.nome}"></label>
+    </th:block>
+    <p></p>  
+
+    <th:bock>
+       <div class = "form-group">
+          <label for="formGroupExampleInput">TELEFONES</label>
+       </div>
+       <select class = "form-control" name="id" id="dropDownList">
+       <option value="null" selected>selecione</option>
+       <option th:each="tele : ${telefones}" th:value = "${tele.id}" th:text = "${tele.numero}"></option>
+      </select>
+    </th:bock>
+    <div>
+      <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </div>
+  </form>
+  </body>
+</html>
